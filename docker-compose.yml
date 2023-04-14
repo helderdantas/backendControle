@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  backend:
+    container_name: backend_cont
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backend_cont
+    restart: always
+    ports:
+      - 3004:3004
+    environment:
+      - DATABASE_PASSWORD=postgres
