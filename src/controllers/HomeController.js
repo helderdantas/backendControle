@@ -1,15 +1,17 @@
 import Controle from '../models/Controle';
 
+const Op = require('sequelize');
+
 class HomeController {
   // store -> criar o controle no banco de dados
   async store(req, res) {
     try {
       /* eslint max-len: ["error", { "code": 250}] */
       const {
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       } = req.body;
       const novoControle = await Controle.create({
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       });
 
       return res.json(novoControle);
@@ -26,7 +28,8 @@ class HomeController {
   async index(req, res) {
     try {
       console.log('entrei');
-      const controle = await Controle.findAll({ attributes: ['setor', 'subsetor', 'ilha', 'cpu', 'cpunumeroserie', 'monitor1', 'monitor1numeroserie', 'monitor2', 'monitor2numeroserie', 'impressora', 'telefone', 'observacao'] });
+      // eslint-disable-next-line max-len
+      const controle = await Controle.findAll({ attributes: ['id', 'setor', 'subsetor', 'ilha', 'baia', 'cputombo', 'cpunumeroserie', 'monitor1tombo', 'monitor1numeroserie', 'monitor2tombo', 'monitor2numeroserie', 'impressora', 'telefone', 'observacao'] });
       console.log('entrei2');
       console.log(controle);
       return res.json(controle);
@@ -42,19 +45,19 @@ class HomeController {
         const { id } = req.params;
         const controle = await Controle.findByPk(id);
         const {
-          setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
         } = controle;
         return res.json({
-          setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
         });
       }
       const { nome } = req.body;
       const controle = await Controle.findAll({ where: { setor: nome } });
       const {
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       } = controle;
       return res.json({
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       });
     } catch (error) {
       return res.json(null);
@@ -64,8 +67,6 @@ class HomeController {
   // filtrarPorSetor-> busca um contorle por setor
   async filtrarPorSetor(req, res) {
     try {
-      console.log('1');
-      console.log('2');
       const { setor } = req.params;
       console.log(setor);
       const controles = await Controle.findAll({ where: { setor } });
@@ -78,9 +79,8 @@ class HomeController {
   // filtrarPorSubSetor -> busca um contorle por subSetor
   async filtrarPorSubSetor(req, res) {
     try {
-      console.log(req);
       const { subsetor } = req.params;
-      // console.log(subsetor);
+      console.log(subsetor);
       const controles = await Controle.findAll({ where: { subsetor } });
       return res.json(controles);
     } catch (error) {
@@ -89,11 +89,11 @@ class HomeController {
   }
 
   // filtrarPorCpu -> busca um contorle por cpu
-  async filtrarPorCpu(req, res) {
+  async filtrarPorCpuTombo(req, res) {
     try {
-      const { cpu } = req.params;
-      console.log(cpu);
-      const controles = await Controle.findAll({ where: { cpu } });
+      const { cputombo } = req.params;
+      console.log(cputombo);
+      const controles = await Controle.findAll({ where: { cputombo } });
       console.log('entre 3');
       console.log(controles);
       return res.json(controles);
@@ -117,10 +117,10 @@ class HomeController {
   }
 
   // filtrarPorMonitor1 -> busca um contorle por monitor1
-  async filtrarPorMonitor1(req, res) {
+  async filtrarPorMonitor1Tombo(req, res) {
     try {
-      const { monitor1 } = req.params;
-      const controles = await Controle.findAll({ where: { monitor1 } });
+      const { monitor1tombo } = req.params;
+      const controles = await Controle.findAll({ where: { monitor1tombo } });
       return res.json(controles);
     } catch (error) {
       return res.json(null);
@@ -150,10 +150,10 @@ class HomeController {
   }
 
   // filtrarPorMonitor2 -> busca um contorle por monitor2
-  async filtrarPorMonitor2(req, res) {
+  async filtrarPorMonitor2Tombo(req, res) {
     try {
-      const { monitor2 } = req.params;
-      const controles = await Controle.findAll({ where: { monitor2 } });
+      const { monitor2tombo } = req.params;
+      const controles = await Controle.findAll({ where: { monitor2tombo } });
       return res.json(controles);
     } catch (error) {
       return res.json(null);
@@ -165,6 +165,27 @@ class HomeController {
     try {
       const { impressora } = req.params;
       const controles = await Controle.findAll({ where: { impressora } });
+      return res.json(controles);
+    } catch (error) {
+      return res.json(null);
+    }
+  }
+
+  // filtrarPorImpressora -> busca um contorle por impressora
+  async filtrarPorObservacao(req, res) {
+    try {
+      console.log('entrei na rota observacao');
+
+      const { valor } = req.params;
+      console.log(valor);
+      const controles = await Controle.findAll({
+        where: {
+          observacao: {
+            [Op.Op.like]: `%${valor}%`,
+          },
+
+        },
+      });
       return res.json(controles);
     } catch (error) {
       return res.json(null);
@@ -187,11 +208,11 @@ class HomeController {
         });
       }
       const {
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       } = req.body;
 
       const novosDados = await Controle.update({
-        setor, subsetor, ilha, cpu, cpunumeroserie, monitor1, monitor1numeroserie, monitor2, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
       }, { where: { id } });
       return res.json(`Alteração realizada com sucesso ${novosDados}`);
     } catch (error) {

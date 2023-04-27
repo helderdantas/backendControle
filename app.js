@@ -9,6 +9,8 @@ import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 import userRoutes from './src/routes/userRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
+import setorRoutes from './src/routes/setorRoutes';
+import subSetorRoutes from './src/routes/subSetorRoutes';
 
 class App {
   constructor() {
@@ -27,6 +29,8 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/users/', userRoutes);
     this.app.use('/tokens/', tokenRoutes);
+    this.app.use('/setor/', setorRoutes);
+    this.app.use('/subSetor/', subSetorRoutes);
     this.app.use(cors());
   }
 }

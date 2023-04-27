@@ -9,7 +9,7 @@ const router = new Router();
 router.post('/criarControle', loginRequired, homeController.store);
 
 // Lista todos os controles do banco de dados
-router.get('/listarControles', loginRequired, homeController.index);
+router.get('/listarControles', homeController.index);
 
 // Lista um controle pelo id
 router.get('/listarControle/:id', homeController.show);
@@ -21,25 +21,28 @@ router.get('/filtrarPorSetor/:setor', homeController.filtrarPorSetor);
 router.get('/filtrarPorSubSetor/:subsetor', homeController.filtrarPorSubSetor);
 
 // Lista um controles por cpu
-router.get('/filtrarPorCpu/:cpu', homeController.filtrarPorCpu);
+router.get('/filtrarPorCpuTombo/:cputombo', homeController.filtrarPorCpuTombo);
 
 // Lista um controles por cpuNumeroSerie
-router.get('/filtrarPorCpuNumeroSerie/:cpuNumeroSerie', homeController.filtrarPorCpuNumeroSerie);
+router.get('/filtrarPorCpuNumeroSerie/:cpunumeroserie', homeController.filtrarPorCpuNumeroSerie);
 
 // Lista um controles por monitor1
-router.get('/filtrarPorMonitor1/:monitor1', homeController.filtrarPorMonitor1);
+router.get('/filtrarPorMonitor1Tombo/:monitor1tombo', homeController.filtrarPorMonitor1Tombo);
 
 // Lista um controles por monitor1NumeroSerie
-router.get('/filtrarPorMonitor1NumeroSerie/:monitor1NumeroSerie', homeController.filtrarPorMonitor1NumeroSerie);
+router.get('/filtrarPorMonitor1NumeroSerie/:monitor1numeroserie', homeController.filtrarPorMonitor1NumeroSerie);
 
 // Lista um controles por monitor2
-router.get('/filtrarPorMonitor2/:monitor2', homeController.filtrarPorMonitor2);
+router.get('/filtrarPorMonitor2Tombo/:monitor2tombo', homeController.filtrarPorMonitor2Tombo);
 
 // Lista um controles por monitor2NumeroSerie
-router.get('/filtrarPorMonitor2/:monitor2NumeroSerie', homeController.filtrarPorMonitor2NumeroSerie);
+router.get('/filtrarPorMonitor2NumeroSerie/:monitor2numeroserie', homeController.filtrarPorMonitor2NumeroSerie);
 
 // Lista um controles por impressora
 router.get('/filtrarPorImpressora/:impressora', homeController.filtrarPorImpressora);
+
+// Lista um controles por observacao
+router.get('/filtrarPorObservacao/:valor', homeController.filtrarPorObservacao);
 
 // Rota para atualizar um controle pelo id
 router.put('/atualizarControle/:id', loginRequired, homeController.updateControleId);

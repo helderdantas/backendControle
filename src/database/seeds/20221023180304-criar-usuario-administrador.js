@@ -13,6 +13,7 @@ module.exports = {
         {
           nome: 'admin',
           email: 'admin@gmail.com',
+          cpf: '67049311391',
           password_hash: await bcryptjs.hash('123456', 8),
           telefone: '9999999',
           created_at: new Date(),

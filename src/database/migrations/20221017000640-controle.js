@@ -26,15 +26,31 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      cpu: {
+      baia: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      monitor1: {
+      cputombo: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      monitor2: {
+      cpunumeroserie: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      monitor1tombo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      monitor1numeroserie: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      monitor2tombo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      monitor2numeroserie: {
         type: Sequelize.STRING,
         allowNull: false,
       },
