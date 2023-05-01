@@ -18,8 +18,14 @@ router.put('/updateTelefoneSetor/:id', loginRequired, setorController.updateTele
 // Rota para listar todos os setores(ativos e finalizados) do banco de dados
 router.get('/listarTodosSetores', loginRequired, setorController.index);
 
+// Foi adicionado essa Rota, sem loginRequired, para ser usado no sistema de chamado
+router.get('/obterTodosSetores', setorController.index);
+
 // Rota para listar todos setores ativos
 router.get('/listarSetoresAtivos', loginRequired, setorController.listarSetoresAtivo);
+
+// Foi adicionado essa Rota, sem loginRequired, para ser usado no sistema de chamado
+router.get('/obterTodosSetoresAtivos', setorController.listarSetoresAtivo);
 
 // Rota para deletar setor do banco de dados
 router.delete('/deletarSetor/:id', loginRequired, setorController.deletarSetor);
