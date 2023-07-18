@@ -1,0 +1,40 @@
+version: '3.9'
+
+networks:
+  seec-network:
+    name: seec
+
+services:
+  postgres:
+    container_name: controle
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: controle
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    networks:
+      - seec-network
+
+  backendcontrole:
+    container_name: backend-controle
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backend_controle
+    restart: always
+    ports:
+      - 3030:3030
+    depends_on:
+      - postgres
+    networks:
+      - seec-network
+
+
+
+
+

@@ -8,10 +8,10 @@ class HomeController {
     try {
       /* eslint max-len: ["error", { "code": 250}] */
       const {
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       } = req.body;
       const novoControle = await Controle.create({
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       });
 
       return res.json(novoControle);
@@ -29,7 +29,7 @@ class HomeController {
     try {
       console.log('entrei');
       // eslint-disable-next-line max-len
-      const controle = await Controle.findAll({ attributes: ['id', 'setor', 'subsetor', 'ilha', 'baia', 'cputombo', 'cpunumeroserie', 'monitor1tombo', 'monitor1numeroserie', 'monitor2tombo', 'monitor2numeroserie', 'impressora', 'telefone', 'observacao'] });
+      const controle = await Controle.findAll({ attributes: ['id', 'setor', 'subsetor', 'ilha', 'baia', 'cputombo', 'cpunumeroserie', 'monitor1tombo', 'monitor1numeroserie', 'monitor2tombo', 'monitor2numeroserie', 'impressora', 'observacao'] });
       console.log('entrei2');
       console.log(controle);
       return res.json(controle);
@@ -45,19 +45,19 @@ class HomeController {
         const { id } = req.params;
         const controle = await Controle.findByPk(id);
         const {
-          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
         } = controle;
         return res.json({
-          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+          setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
         });
       }
       const { nome } = req.body;
       const controle = await Controle.findAll({ where: { setor: nome } });
       const {
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       } = controle;
       return res.json({
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       });
     } catch (error) {
       return res.json(null);
@@ -208,11 +208,11 @@ class HomeController {
         });
       }
       const {
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       } = req.body;
 
       const novosDados = await Controle.update({
-        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, telefone, observacao,
+        setor, subsetor, ilha, baia, cputombo, cpunumeroserie, monitor1tombo, monitor1numeroserie, monitor2tombo, monitor2numeroserie, impressora, observacao,
       }, { where: { id } });
       return res.json(`Alteração realizada com sucesso ${novosDados}`);
     } catch (error) {

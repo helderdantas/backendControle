@@ -58,10 +58,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      telefone: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       observacao: {
         type: Sequelize.STRING,
         allowNull: false,

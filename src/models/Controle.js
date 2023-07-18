@@ -14,7 +14,6 @@ export default class Controle extends Model {
       monitor2tombo: Sequelize.STRING,
       monitor2numeroserie: Sequelize.STRING,
       impressora: Sequelize.STRING,
-      telefone: Sequelize.STRING,
       observacao: Sequelize.STRING,
 
     }, {
