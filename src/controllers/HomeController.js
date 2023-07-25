@@ -26,6 +26,7 @@ class HomeController {
 
   // index -> lista todos os controles do banco de dados
   async index(req, res) {
+    console.log('entrei');
     try {
       console.log('entrei');
       // eslint-disable-next-line max-len
