@@ -27,9 +27,9 @@ class HomeController {
   // index -> lista todos os controles do banco de dados
   async index(req, res) {
     try {
-      console.log('entrei');
+      console.log('entre');
       // eslint-disable-next-line max-len
-      const controle = await Controle.findAll({ attributes: ['id', 'setor', 'subsetor', 'ilha', 'baia', 'cputombo', 'cpunumeroserie', 'monitor1tombo', 'monitor1numeroserie', 'monitor2tombo', 'monitor2numeroserie', 'impressora', 'observacao'] });
+      const controle = await Controle.findAll({ order: [['id', 'ASC']] });
       console.log('entrei2');
       console.log(controle);
       return res.json(controle);
