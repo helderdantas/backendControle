@@ -8,11 +8,11 @@ class UserController {
     try {
       const novoUser = await User.create(req.body);
       const {
-        nome, email, cpf, telefone,
+        nome, email, cpf, telefone, logado, atendendo,
       } = novoUser;
 
       return res.json({
-        nome, email, cpf, telefone,
+        nome, email, cpf, telefone, logado, atendendo,
       });
     } catch (error) {
       return res.status(400).json(
@@ -26,7 +26,7 @@ class UserController {
   // index -> lista todos os usuarios do banco de dados
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'nome', 'email', 'cpf', 'telefone'] });
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email', 'cpf', 'telefone', 'logado', 'atendendo'] });
       // console.log('id', req.userId);
       // console.log('email', req.userEmail);
       return res.json(users);
@@ -40,8 +40,12 @@ class UserController {
     try {
       const { id } = req.params;
       const user = await User.findByPk(id);
-      const { nome, email, telefone } = user;
-      return res.json({ nome, email, telefone });
+      const {
+        nome, email, telefone, logado, atendendo,
+      } = user;
+      return res.json({
+        nome, email, telefone, logado, atendendo,
+      });
     } catch (error) {
       return res.json(null);
     }

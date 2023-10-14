@@ -36,6 +36,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      logado: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
+      atendendo: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

@@ -52,6 +52,15 @@ export default class User extends Model {
         type: Sequelize.STRING,
         defaultValue: null,
       },
+      logado: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      atendendo: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+
     }, {
       sequelize,
     });
