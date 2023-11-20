@@ -5,7 +5,7 @@ networks:
     name: seec
 
 services:
-  postgres:
+  controle-postgres:
     container_name: controle
     image: postgres:15
     restart: always
@@ -19,8 +19,13 @@ services:
       - 5433:5432
     networks:
       - seec-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d 'controle' -U 'postgres'"]
+      interval: 10s
+      timeout: 30s
+      retries: 10
 
-  backendcontrole:
+  contorle-backend:
     container_name: backend-controle
     build:
       context: .
@@ -29,11 +34,11 @@ services:
     restart: always
     ports:
       - 3030:3030
-    depends_on:
-      - postgres
     networks:
       - seec-network
-
+    depends_on:
+      controle-postgres:
+        condition: service_healthy
 
 
 
